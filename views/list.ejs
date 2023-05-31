@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>ToDo</title>
+</head>
+
+<body>
+    <section class="vh-100" style="background-color: rgb(235, 240, 245);">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card" id="list1" style="border-radius: .75rem; background-color: rgb(103, 191, 241)">
+                        <div class="card-body py-4 px-4 px-md-5">
+
+                            <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+
+                                <a id="title">
+                                    <%=listTitle%>
+                                </a>
+                            </p>
+
+                            <div class="pb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <form action="\" method="POST">
+                                                <input name="item" type="text" class="form-control form-control-lg"
+                                                    id="exampleFormControlInput1" style="padding-left: 0px;"
+                                                    placeholder="Add new...">
+
+
+                                                <button type="submit" class="btn btn-primary" name="list"
+                                                    value=<%=listTitle %></button>Add</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="d-flex justify-content-end align-items-center mb-4 pt-2 pb-3">
+                                <p class="small mb-0 me-2 mr-2 text-muted">Filter: </p>
+                                <select class="select">
+                                    <option value="1">All</option>
+                                    <option value="2">Completed</option>
+                                    <option value="3">Active</option>
+                                    <option value="4">Has due date</option>
+                                </select>
+                                <p class="small mb-0 ml-4 mr-2 ms-4 me-2 text-muted">Sort: </p>
+                                <select class="select">
+                                    <option value="1">Added date</option>
+                                    <option value="2">Due date</option>
+                                </select>
+                                <a style="color: #23af89;" data-mdb-toggle="tooltip" title="Ascending"><i
+                                        class="fas fa-sort-amount-down-alt ms-2"></i></a>
+                            </div>
+
+                            <% newItems.forEach(function(newItem){%>
+                                <ul class="list-group list-group-horizontal rounded-0"
+                                    style="background-color: white; border-radius:0.75rem;">
+                                    <li
+                                        class="list-group-item d-flex align-items-left mb-1 ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+
+
+                                        <form class="form-check pt-2" action="/complete" method="post">
+                                            <input name="isCheck" class="form-check-input " type="checkbox"
+                                                onChange="this.form.submit()" value="<%=newItem._id%>"
+                                                id="flexCheckChecked2" />
+                                            <p class="form-check-normal">
+                                                <%=newItem.item%>
+                                            </p>
+                                        </form>
+                                    </li>
+                                    <li
+                                        class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+
+                                    </li>
+
+                                    <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
+                                        <div class="d-flex flex-row justify-content-end mb-1">
+                                            <form action="/edit" method="post">
+                                                <button id="editItem" data-mdb-toggle="tooltip" title="Edit todo"
+                                                    type="submit" name="edit" value=<%=newItem._id%>>
+                                                    <img src="https://icon-library.com/images/icon-edit/icon-edit-11.jpg"
+                                                        width="30px" height="30px"></button>
+                                            </form>
+                                            <form action="/delete" method="post">
+                                                <button id="deleteItem" data-mdb-toggle="tooltip" title="Delete todo"
+                                                    type="submit" name="delete" value=<%=newItem._id%>>
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/6048/6048190.png"
+                                                        width="30px" height="30px"></button>
+                                            </form>
+                                        </div>
+
+                                        <!-- date -->
+                                        <div class="text-end text-muted">
+                                            <a class="text-muted text-center" data-mdb-toggle="tooltip"
+                                                title="Created date">
+                                                <p class="small mb-0"><i class="fas fa-info-circle me-2 "></i>
+                                                    <%= newItem.date %>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <hr />
+                                <% }) %>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

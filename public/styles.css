@@ -1,0 +1,32 @@
+#list1 .form-control {
+  border-color: transparent;
+}
+
+#list1 .form-control:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#list1 .select-input.form-control[readonly]:not([disabled]) {
+  background-color: #fbfbfb;
+}
+
+#flexCheckChecked2:checked+p {
+  text-decoration: line-through;
+
+}
+
+#deleteItem {
+  background-color: transparent;
+  border-color: transparent;
+}
+#editItem {
+  background-color: transparent;
+  border-color: transparent;
+}
+#title{
+  color: blue;
+  text-emphasis-color: darkblue;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
